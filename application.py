@@ -108,7 +108,7 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET", "POST"])
 def initFunc():
-    return "Hello Azure!"
+    return "Hey Azure :)"
     
 @app.route('/login', methods = ["GET", "POST"])
 def loginFunc():
@@ -125,6 +125,8 @@ def loginFunc():
         print("accesstoken in loginFunc:", accesstoken)
         return json.dumps({"login": True, "accesstoken": accesstoken})
     except:
+        e = sys.exc_info()[0]
+        print(e)
         return json.dumps({"login": False, "accesstoken" : None, "error": True})    
 
 @app.route('/logout', methods = ["GET", "POST"])
@@ -138,6 +140,8 @@ def logoutFunc():
         else:
             return json.dumps({"logout" : False})
     except:
+        e = sys.exc_info()[0]
+        print(e)
         return json.dumps({"logout" : False, "error": True})
 
 @app.route('/register', methods = ["GET", "POST"])
@@ -154,6 +158,8 @@ def registerFunc():
         accesstoken = db.generateaccesstokenandstore(uid)
         return json.dumps({"login": True, "accesstoken": accesstoken})
     except:
+        e = sys.exc_info()[0]
+        print(e)
         return json.dumps({"login": False, "accesstoken" : None, "error": True}) 
 
 @app.route('/stores', methods = ["GET", "POST"])
@@ -173,10 +179,11 @@ def displaystoresFunc():
         
         return json.dumps({"stores": storeslist})
     except:
+        e = sys.exc_info()[0]
+        print(e)
         return json.dumps({"stores": None, "error" : True})
 
 
 # %%
-if __name__ == "__main__":
-    app.run(debug = False)
+app.run(debug = False)
 
