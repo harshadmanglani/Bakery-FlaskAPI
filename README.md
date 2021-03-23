@@ -6,7 +6,11 @@ New users can register as well.
 As a sample funcitonality, it shows data of partner bakery stores once you're logged in successfully.
 
 / - sample route
+
 /login - login route
+
 /logout - logout route
+
 /register - registration route
+
 /stores - data from partner bakery stores
